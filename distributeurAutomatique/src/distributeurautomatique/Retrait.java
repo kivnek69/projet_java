@@ -6,13 +6,14 @@ package distributeurautomatique;
 
 /**
  *
- * @author rafik and mohaned
+ * @author rafik
  */
-public class Accueil  {
+public class Retrait {
     
     
-    public Accueil(){
+    
+    
+    public Retrait(){
         
     }
-    
 }

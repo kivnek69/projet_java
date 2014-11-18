@@ -8,13 +8,13 @@ package distributeurautomatique;
  *
  * @author rafik
  */
-public class index {
+public class Index {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        interfaceUtilisateur intUser = new interfaceUtilisateur();
+        InterfaceGraphique intUser = new InterfaceGraphique();
         intUser.setVisible(true);
     }
 }
