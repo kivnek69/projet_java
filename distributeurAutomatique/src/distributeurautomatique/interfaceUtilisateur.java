@@ -10,6 +10,7 @@ public class interfaceUtilisateur extends javax.swing.JFrame {
     private static int sommeInitiale = 20;
     private static int total = 0;
     private static int ancienSolde = 0;
+   
    // private static int annuler = 0;
     private static int cinq = 5;
     private static int dix = 10;
@@ -135,22 +136,22 @@ public class interfaceUtilisateur extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private int clickValider(int sommeArgent){
+    private int ajout_somme(int sommeArgent){
         //somme initiale de 20€ = 20€+ (5€ ou 10€ ou 15€)
         sommeInitiale = sommeInitiale + sommeArgent;        
         //on renvoit la somme totale 
         return sommeInitiale;
     }
-    
+    /*
     private int clickAnnuler(int sommeArgent){
          sommeInitiale = sommeInitiale - sommeArgent;        
         //on renvoit la somme totale 
         return sommeInitiale;
     }
-    
+    */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         ancienSolde = total;
-        total = clickValider(cinq);        
+        total = ajout_somme(cinq);        
         jTextField1.setText(total + "€");
       
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -162,19 +163,20 @@ public class interfaceUtilisateur extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         ancienSolde = total;
-        total = clickValider(dix);       
+        total = ajout_somme(dix);       
         jTextField1.setText(total + "€");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         ancienSolde = total;     
-        total = clickValider(vingt);       
+        total = ajout_somme(vingt);       
         jTextField1.setText(total + "€");
         
+ 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-                 
+                
        jTextField1.setText(ancienSolde + "€");
        
     }//GEN-LAST:event_jButton5ActionPerformed
