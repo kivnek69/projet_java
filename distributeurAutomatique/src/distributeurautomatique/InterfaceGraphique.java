@@ -28,7 +28,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     
     public InterfaceGraphique() {
         initComponents();
-        cacher_bouton();
+        this.cacher_bouton();
         
     }
 
@@ -214,7 +214,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+    //Ajouter de l'argent 
     private int ajout_somme(int sommeArgent){
         //somme initiale de 20€ = 20€+ (5€ ou 10€ ou 20€)
         sommeInitiale = sommeInitiale + sommeArgent;        
@@ -222,25 +222,28 @@ public class InterfaceGraphique extends javax.swing.JFrame {
         return sommeInitiale;
     }
     
+    //retirer de l'argent
     private int retirer_somme(int sommeArgent){
         //somme initiale de 20€ = 20€+ (5€ ou 10€ ou 20€)
         sommeInitiale = sommeInitiale - sommeArgent;        
         //la somme ne doit pas être négative
         if(sommeArgent>sommeInitiale){
             sommeInitiale = sommeInitiale;
-            System.out.println("Le retrait est impossible");}
+            System.out.println("Le retrait est impossible");//test
+        }
         
         //on renvoit la somme totale 
         return sommeInitiale;
     }
     
-  
+   //Annuler une quelconque opération 
     private int clickAnnuler(int sommeArgent){
         sommeInitiale = sommeInitiale - sommeArgent;        
         //on renvoit la somme totale 
         return sommeInitiale;
     }
     
+   //Activation des boutons pour déposer ou retirer de l'argent
     private void activer_bouton(){
         jButton3.setEnabled(true);
         jButton2.setEnabled(true);
@@ -248,6 +251,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     }
     
     
+    //désactiver boutons
     private void desactiver_bouton(){
         if(total<Ajout.getVingt()){
             jButton3.setEnabled(false);
@@ -264,18 +268,9 @@ public class InterfaceGraphique extends javax.swing.JFrame {
             jButton1.setEnabled(false);
             
         }
-       /* 
-         if((!test) && (total <= 0)){   
-           
-            jTextField1.setText("0€");
-            jButton1.setEnabled(false);
-            jButton2.setEnabled(false);
-            jButton3.setEnabled(false);
-        }
-         */ 
     }
     
-    //fonction pour cacher les boutons initulisables dans une quelconque opération
+    //fonction pour cacher les boutons initulisables dans quelques opération
     private void cacher_bouton(){
         jButton1.hide();
         jButton2.hide();
@@ -292,6 +287,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
         jTextField1.setText(total + "€");
     }
     
+    //opération sur les boutons pour le dépot et le retrait d'argent
     private void operation_depot_retrait(){
         jButton8.hide();
         jButton9.hide();
@@ -318,9 +314,6 @@ public class InterfaceGraphique extends javax.swing.JFrame {
            desactiver_bouton();           
            jTextField1.setText(total + "€");
        }
-        
-        //desactiver le bouton
-       // desactiver_bouton();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
@@ -394,12 +387,13 @@ public class InterfaceGraphique extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         test = true;
-       // total = 20;
         
+        if(total == 0){            
+            activer_bouton();
+        }        
         jLabel1.setText("");
         jTextField1.setText(total +"€");
         
-       // jTextField1.setText(total +"€");
         operation_depot_retrait();
     }//GEN-LAST:event_jButton9ActionPerformed
 
