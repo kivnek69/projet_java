@@ -225,6 +225,11 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     private int retirer_somme(int sommeArgent){
         //somme initiale de 20€ = 20€+ (5€ ou 10€ ou 20€)
         sommeInitiale = sommeInitiale - sommeArgent;        
+        //la somme ne doit pas être négative
+        if(sommeArgent>sommeInitiale){
+            sommeInitiale = sommeInitiale;
+            System.out.println("Le retrait est impossible");}
+        
         //on renvoit la somme totale 
         return sommeInitiale;
     }
@@ -236,9 +241,30 @@ public class InterfaceGraphique extends javax.swing.JFrame {
         return sommeInitiale;
     }
     
+    private void activer_bouton(){
+        jButton3.setEnabled(true);
+        jButton2.setEnabled(true);
+        jButton1.setEnabled(true);
+    }
+    
     
     private void desactiver_bouton(){
+        if(total<Ajout.getVingt()){
+            jButton3.setEnabled(false);
+        } 
         
+        if(total<Ajout.getDix()){
+            jButton3.setEnabled(false);
+            jButton2.setEnabled(false);
+        } 
+        
+        if(total<Ajout.getCinq()){
+            jButton3.setEnabled(false);
+            jButton2.setEnabled(false);
+            jButton1.setEnabled(false);
+            
+        }
+       /* 
          if((!test) && (total <= 0)){   
            
             jTextField1.setText("0€");
@@ -246,7 +272,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
             jButton2.setEnabled(false);
             jButton3.setEnabled(false);
         }
-          
+         */ 
     }
     
     //fonction pour cacher les boutons initulisables dans une quelconque opération
@@ -282,15 +308,19 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
                        
         if(test){
-        total = ajout_somme(Ajout.getCinq());       
+        total = ajout_somme(Ajout.getCinq());  
+        activer_bouton();
         jTextField1.setText(total + "€");
+        
        }else{
-           total = retirer_somme(Ajout.getCinq());       
+           total = retirer_somme(Ajout.getCinq());  
+            //desactiver le bouton une fois la valeur total est inferieure est la valeur à soustraire
+           desactiver_bouton();           
            jTextField1.setText(total + "€");
        }
         
         //desactiver le bouton
-        desactiver_bouton();
+       // desactiver_bouton();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
@@ -301,24 +331,28 @@ public class InterfaceGraphique extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        if(test){
-        total = ajout_somme(Ajout.getDix());       
+        total = ajout_somme(Ajout.getDix());  
+        activer_bouton();
         jTextField1.setText(total + "€");
        }else{
-           total = retirer_somme(Ajout.getDix());       
+           total = retirer_somme(Ajout.getDix()); 
+           desactiver_bouton(); 
            jTextField1.setText(total + "€");
        }
        
        //desactiver le bouton
-        desactiver_bouton();
+       // desactiver_bouton();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
           
         if(test){
-        total = ajout_somme(Ajout.getVingt());       
+        total = ajout_somme(Ajout.getVingt());   
+        activer_bouton();
         jTextField1.setText(total + "€");
        }else{
-           total = retirer_somme(Ajout.getVingt());       
+           total = retirer_somme(Ajout.getVingt());  
+           desactiver_bouton(); 
            jTextField1.setText(total + "€");
        }
         
@@ -328,15 +362,13 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        total = 0;
+        total = 20;
         sommeInitiale = 20;
         
-        jTextField1.setText(sommeInitiale +"€");
+        jTextField1.setText(total +"€");
        
-        //Reactiver les boutons après avoir annuler l'opération de retrait
-            jButton1.setEnabled(true);
-            jButton2.setEnabled(true);
-            jButton3.setEnabled(true);
+        //Reactiver les boutons après avoir annulé l'opération de retrait
+        activer_bouton();
         
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -362,7 +394,12 @@ public class InterfaceGraphique extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         test = true;
+       // total = 20;
+        
         jLabel1.setText("");
+        jTextField1.setText(total +"€");
+        
+       // jTextField1.setText(total +"€");
         operation_depot_retrait();
     }//GEN-LAST:event_jButton9ActionPerformed
 
@@ -380,6 +417,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         test = false;
         jLabel1.setText("");
+        jTextField1.setText(total +"€");
         operation_depot_retrait();  
        
     }//GEN-LAST:event_jButton10ActionPerformed
