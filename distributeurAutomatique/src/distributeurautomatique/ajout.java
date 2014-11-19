@@ -1,10 +1,6 @@
 
 package distributeurautomatique;
 
-/*
- * @author rafik et Mohaned
- */
-   
 
 public class Ajout {
     
@@ -12,12 +8,8 @@ public class Ajout {
     public static int dix = 10;
     private static int vingt = 20;
 
-    public Ajout(){
+    public Ajout(){}
         
-    }
-    
-    
-    
     /*
      * Les Getters  
      */

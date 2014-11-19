@@ -1,13 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package distributeurautomatique;
 
+import javax.swing.JButton;
+
 /**
- *
- * @author rafik
+ * @author rafik et Mohaned 
  */
+
 public class Index {
 
     /**
@@ -16,5 +15,6 @@ public class Index {
     public static void main(String[] args) {
         InterfaceGraphique intUser = new InterfaceGraphique();
         intUser.setVisible(true);
+        
     }
 }
