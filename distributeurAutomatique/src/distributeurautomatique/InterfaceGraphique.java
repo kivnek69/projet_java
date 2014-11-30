@@ -17,14 +17,14 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     //Attributs
     private static int sommeInitiale = 20;
     private static int total = 20;
-    private boolean test = true; 
-    private boolean test_ = true;
+    private static boolean test = true; 
+    private static boolean test_ = true;
         
     
     
     public InterfaceGraphique() {
         initComponents();
-        this.cacher_bouton();
+        cacher_bouton();
     }
 
     
@@ -381,7 +381,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     }
     
     
-    //désactiver boutons
+    //désactiver le bouton dont la valeur € superieure à la valeur totale existant sur la carte
     private void desactiver_bouton(){
         if(total<Ajout.getVingt()){
             jButton3.setEnabled(false);
@@ -604,7 +604,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        this.pageAurevoir();
+        pageAurevoir();
         test_ = false;
         new Thread(new Runnable() {            
             @Override
@@ -619,7 +619,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
                         jButton11.setEnabled(true);
                         //on reinitialise le texte du bouton 
                         //jButton11.setText("Insérez vontre carte");
-                          pageInsertion();
+                        pageInsertion();
                                     
                  
                 } catch (InterruptedException ex) {
