@@ -17,9 +17,9 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     //Attributs
     private static int sommeInitiale = 20;
     private static int total = 20;
-    private boolean test; 
-    
-    
+    private boolean test = true; 
+    private boolean test_ = true;
+        
     
     
     public InterfaceGraphique() {
@@ -318,8 +318,6 @@ public class InterfaceGraphique extends javax.swing.JFrame {
 
     //Page d'accueil
     public static void pageDaccueil(){
-       // ImageIcon image= new ImageIcon
-       // jLabel2.setIcon(image);
         jFrame1.setVisible(true);
         jFrame1.setSize(800, 600);        
         jFrame1.setLocation(180, 100);
@@ -334,14 +332,18 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     public static void pageAurevoir(){
         jFrame3.setVisible(true);
         jFrame3.setSize(807, 610);        
-        jFrame3.setLocation(178, 95);        
+        jFrame3.setLocation(180, 95);          
+        jLabel4.setVisible(true);
+    }
+    
+    //petite page qui nous sert pour l'insertion et le retrait de la carte
+    public static void pageInsertion(){
         jFrame2.dispose();
         jFrame2.setSize(200, 600);
         jFrame2.setVisible(true);
         jFrame2.setLocation(988, 100);
-        jLabel4.setVisible(true);
+        jButton11.setText("Insérez votre carte");
     }
-    
     
     //Ajouter de l'argent 
     private int ajout_somme(int sommeArgent){
@@ -507,6 +509,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
       jButton5.setVisible(true);
       jButton7.setVisible(true);
       jTextField1.setVisible(false);
+      jLabel1.setVisible(true);
       
       
      
@@ -533,6 +536,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
             activer_bouton();
         }        
         jLabel1.setText("");
+        jLabel1.setVisible(true);
         jTextField1.setText(total +"€");
         jButton12.hide();
         
@@ -545,6 +549,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
         cacher_bouton();
         jButton4.setEnabled(true);
         jButton12.setVisible(true);
+        jLabel1.hide();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     //Bouton Consulter
@@ -552,6 +557,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
         cacher_bouton();        
         jTextField1.setVisible(true);
         jLabel1.setText("  Votre solde est de ");
+        jLabel1.setVisible(true);
         jTextField1.setText(total + "€");
         jButton12.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
@@ -560,34 +566,60 @@ public class InterfaceGraphique extends javax.swing.JFrame {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         test = false;
         jLabel1.setText("");
+        jLabel1.setVisible(true);
         jTextField1.setText(total +"€");
         jButton12.hide();
-        operation_depot_retrait();  
+        
+        this.operation_depot_retrait();  
        
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        jButton11.setText("Carte insérée");        
-        jButton11.setEnabled(false);   
-        jFrame1.setVisible(false);
+    public void gererFenetrePrincipale(){
+        if(test_){
         InterfaceGraphique inter = new InterfaceGraphique();
         inter.setVisible(true);
         inter.setSize(800, 600);
         inter.setLocation(183, 100);
         
+        }else{
+            this.cacher_bouton();
+            jLabel1.setVisible(false);
+        }
+       
+    }
+    
+    
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        //Pour chaque insertion(session), une somme de 20€ existe déja sur la carte
+        total = 20;
+        sommeInitiale = 20;
+        
+        jButton11.setText("Carte insérée");        
+        jButton11.setEnabled(false);   
+        jFrame1.setVisible(false);
+      
+        //on la crée une première fois la jFrame consulter déposer retirer
+        this.gererFenetrePrincipale();
+       
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         this.pageAurevoir();
+        test_ = false;
         new Thread(new Runnable() {            
             @Override
             public void run() {
                 try {     
-                        Thread.sleep(5000);
+                        Thread.sleep(5300);
                         jFrame3.setVisible(false);
                         jFrame1.setVisible(true);
                         jFrame1.setSize(800, 600);        
-                        jFrame1.setLocation(180, 100);
+                        jFrame1.setLocation(181, 100);
+                        //on active le bouton d'insertion de la carte
+                        jButton11.setEnabled(true);
+                        //on reinitialise le texte du bouton 
+                        //jButton11.setText("Insérez vontre carte");
+                          pageInsertion();
                                     
                  
                 } catch (InterruptedException ex) {
@@ -596,6 +628,7 @@ public class InterfaceGraphique extends javax.swing.JFrame {
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         }).start();       
+      
     }//GEN-LAST:event_jButton12ActionPerformed
 
     public static void main(String args[]) {
